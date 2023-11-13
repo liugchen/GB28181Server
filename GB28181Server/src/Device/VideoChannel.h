@@ -26,7 +26,7 @@ struct RtpDataNode
     uint8_t * buffer;
     int size;
     long time;
-    bool isLostPacket; //ÊÇ·ñ¶ªÖ¡ÁË
+    bool isLostPacket; //æ˜¯å¦ä¸¢å¸§äº†
 
     RtpDataNode()
     {
@@ -37,7 +37,7 @@ struct RtpDataNode
     }
 };
 
-///Í¨µÀÊı¾İ£¬Õâ¸öÊı¾İĞèÒªÍ¨¹ıcatalogºó»ñÈ¡µ½µÄ£¬»ù±¾ÉÏ¾ÍÊÇÏà»úµÄÒ»¸öÍ¨µÀ
+///é€šé“æ•°æ®ï¼Œè¿™ä¸ªæ•°æ®éœ€è¦é€šè¿‡catalogåè·å–åˆ°çš„ï¼ŒåŸºæœ¬ä¸Šå°±æ˜¯ç›¸æœºçš„ä¸€ä¸ªé€šé“
 class VideoChannel : public DataListThread<RtpDataNode>
 {
 public:
@@ -45,12 +45,12 @@ public:
     ~VideoChannel();
 
     /**
-     * @brief setEventHandle ÉèÖÃ»Øµ÷º¯Êı
+     * @brief setEventHandle è®¾ç½®å›è°ƒå‡½æ•°
      * @param handle
      */
     void setEventHandle(const VideoChannelEventHandle *handle){mVideoChannelEventHandle = (VideoChannelEventHandle *)handle;}
 
-    ///ÈûÈërtpÊı¾İµÈ´ı´¦Àí
+    ///å¡å…¥rtpæ•°æ®ç­‰å¾…å¤„ç†
     void inputRtpBuffer(uint8_t *buffer, int size, uint32_t sequenceNumber, bool isLastPacket);
 
     void setCallId(int callId){mCallId = callId;}
@@ -62,7 +62,7 @@ protected:
     void dealwithDataNode(const RtpDataNode &node);
 
 public:
-    int RtpSSRC; //rtpÉí·İ±êÖ¾£¬ÓÃÓÚinviteÇëÇó£¬ÓÃÀ´Çø·Ö¶à¸örtpÁ÷¡£
+    int RtpSSRC; //rtpèº«ä»½æ ‡å¿—ï¼Œç”¨äºinviteè¯·æ±‚ï¼Œç”¨æ¥åŒºåˆ†å¤šä¸ªrtpæµã€‚
     std::string DeviceName;
     std::string DeviceID;
     std::string IPAddress;
@@ -70,17 +70,17 @@ public:
     std::string Status;
 
 private:
-    int mCallId; //·¢ËÍinviteµÄcall id, ´Ëid²»Îª-1 ËµÃ÷ÕıÔÚ·¢ËÍinviteÇëÇó£¬·¢ËÍinvite¹ı³ÌÖĞ£¬²»ÄÜÔÙ´Î·¢ËÍinviteÇëÇó£¬·ñÔò»áÓĞÎÊÌâ¡£
+    int mCallId; //å‘é€inviteçš„call id, æ­¤idä¸ä¸º-1 è¯´æ˜æ­£åœ¨å‘é€inviteè¯·æ±‚ï¼Œå‘é€inviteè¿‡ç¨‹ä¸­ï¼Œä¸èƒ½å†æ¬¡å‘é€inviteè¯·æ±‚ï¼Œå¦åˆ™ä¼šæœ‰é—®é¢˜ã€‚
 
-    uint32_t mReceiveRtpTime;     //½ÓÊÕµ½rtpÊı¾İµÄÊ±¼ä(ÓÃÀ´ÅĞ¶ÏrtpÊı¾İ½ÓÊÕÊÇ·ñ³¬Ê±ÁË)
+    uint32_t mReceiveRtpTime;     //æ¥æ”¶åˆ°rtpæ•°æ®çš„æ—¶é—´(ç”¨æ¥åˆ¤æ–­rtpæ•°æ®æ¥æ”¶æ˜¯å¦è¶…æ—¶äº†)
 
     bool mIsCurrentFrameLostPacket;
-    uint32_t mLastSequenceNumber; //ÉÏÒ»´ÎµÄrtpĞòºÅ
+    uint32_t mLastSequenceNumber; //ä¸Šä¸€æ¬¡çš„rtpåºå·
 
-    uint8_t *mRtpBuffer; //´æ·ÅRTPÊÕµ½µÄPSÁ÷
+    uint8_t *mRtpBuffer; //å­˜æ”¾RTPæ”¶åˆ°çš„PSæµ
     int mRtpBufferSize;
 
-    ///ffmpeg½âÂëÏà¹Ø²ÎÊı
+    ///ffmpegè§£ç ç›¸å…³å‚æ•°
     AVCodec *pCodec;
     AVCodecContext *pCodecCtx;
     AVFrame * pFrameRGB;
@@ -93,19 +93,19 @@ private:
 
     char *mH264buf;
 
-    bool mIsLastKeyFrameLostPacket; //ÉÏÒ»¸öIÖ¡ÊÇ·ñ¶ª°üÁË£¬ÊÇµÄ»°£¬½ÓÏÂÀ´µÄÖ¡¶¼ÓĞ¿ÉÄÜ»¨ÆÁ ½ÓÏÂÀ´ËùÓĞµÄÖ¡£¬ ¶¼²»´«Èë¼ì²â
-    bool mIsKeyFrameGetted; //ÓÃÀ´¼ÇÂ¼IÖ¡ÊÇ·ñ»ñÈ¡µ½ÁË ·ñÔò¶ªÆúµÃµ½µÄh264Ö¡
+    bool mIsLastKeyFrameLostPacket; //ä¸Šä¸€ä¸ªIå¸§æ˜¯å¦ä¸¢åŒ…äº†ï¼Œæ˜¯çš„è¯ï¼Œæ¥ä¸‹æ¥çš„å¸§éƒ½æœ‰å¯èƒ½èŠ±å± æ¥ä¸‹æ¥æ‰€æœ‰çš„å¸§ï¼Œ éƒ½ä¸ä¼ å…¥æ£€æµ‹
+    bool mIsKeyFrameGetted; //ç”¨æ¥è®°å½•Iå¸§æ˜¯å¦è·å–åˆ°äº† å¦åˆ™ä¸¢å¼ƒå¾—åˆ°çš„h264å¸§
 
     bool openH264Decoder();
     void closeH264Decoder();
 
     void decodeH264Buffer(uint8_t *buffer, int size, bool isLostPacket);
 
-    ///ÓÃÓÚÊä³öµ½½çÃæÉÏµÄ»Øµ÷º¯Êı
+    ///ç”¨äºè¾“å‡ºåˆ°ç•Œé¢ä¸Šçš„å›è°ƒå‡½æ•°
 private:
-    VideoChannelEventHandle *mVideoChannelEventHandle; //»Øµ÷º¯Êı ÓÃÓÚ´«µİĞÅÏ¢¸ø½çÃæ
+    VideoChannelEventHandle *mVideoChannelEventHandle; //å›è°ƒå‡½æ•° ç”¨äºä¼ é€’ä¿¡æ¯ç»™ç•Œé¢
 
-    void dealWithRgb32Frame(const uint8_t *rgb32Buffer, const int bufferSize,  const int width, const int height, const bool isLostPacket, const bool isKeyFrame); //ÏÔÊ¾ÊÓÆµÊı¾İ
+    void dealWithRgb32Frame(const uint8_t *rgb32Buffer, const int bufferSize,  const int width, const int height, const bool isLostPacket, const bool isKeyFrame); //æ˜¾ç¤ºè§†é¢‘æ•°æ®
 
 };
 

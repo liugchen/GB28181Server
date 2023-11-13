@@ -80,7 +80,7 @@ void MainWindow::onDeviceUpdate(const CameraDevice &deviceNode)
 ///接收到消息
 void MainWindow::onReceiveMessage(const char *deviceID, const MessageType &type, const char *msgBody)
 {
-//    qDebug()<<__FUNCTION__<<deviceID<<type<<msgBody;
+    qDebug()<<__FUNCTION__<<deviceID<<"type"<<type<<"msgBody"<<msgBody;
     emit sig_receiveMessage(QString(deviceID), type, QString(msgBody));
 }
 

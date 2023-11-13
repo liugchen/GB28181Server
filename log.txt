@@ -1,0 +1,339 @@
+dest_call : sip:34020000001310000001@192.168.1.109:5060!
+
+source_call : sip:34020000002000000001@192.168.1.109:5060!
+
+route : sip:34020000001310000001@192.168.1.109:5060!
+
+subject : 34020000001310000001:0,34020000002000000001:0!
+
+send invite v=0
+o=34020000001310000001 0 0 IN IP4 192.168.1.109
+s=Play
+c=IN IP4 192.168.1.109
+t=0 0
+m=video 8000 RTP/AVP 96 98 97
+a=setup:passive
+a=rtpmap:96 PS/90000
+a=rtpmap:97 MPEG4/90000
+a=rtpmap:98 H264/90000
+a=recvonly
+a=connection:new
+y=0100000001
+f=
+ 
+ call_id=1
+je textinfo is:Call is being processed!
+
+recv EXOSIP_CALL_PROCEEDING
+
+ :type = 5, new msg method:INVITE
+
+
+print request start
+type=5
+INVITE sip:34020000001310000001@192.168.1.109:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.110:5060;rport;branch=z9hG4bK47020889
+From: <sip:34020000002000000001@192.168.1.109:5060>;tag=723855376
+To: <sip:34020000001310000001@192.168.1.109:5060>
+Call-ID: 1658878235
+CSeq: 20 INVITE
+Contact: <sip:34020000002000000001@192.168.1.110:5060>
+Content-Type: Application/SDP
+Max-Forwards: 70
+User-Agent: eXosip/5.0.0
+Subject: 34020000001310000001:0,34020000002000000001:0
+Content-Length:   260
+
+v=0
+o=34020000001310000001 0 0 IN IP4 192.168.1.109
+s=Play
+c=IN IP4 192.168.1.109
+t=0 0
+m=video 8000 RTP/AVP 96 98 97
+a=setup:passive
+a=rtpmap:96 PS/90000
+a=rtpmap:97 MPEG4/90000
+a=rtpmap:98 H264/90000
+a=recvonly
+a=connection:new
+y=0100000001
+f=
+
+print request end
+
+
+print response start
+type=5
+SIP/2.0 100 Trying
+Via: SIP/2.0/UDP 192.168.1.110:5060;rport=5060;branch=z9hG4bK47020889
+From: <sip:34020000002000000001@192.168.1.109:5060>;tag=723855376
+To: <sip:34020000001310000001@192.168.1.109:5060>
+Call-ID: 1658878235
+CSeq: 20 INVITE
+User-agent: SIP UAS V3.0.0.1168249
+Content-Length: 0
+
+
+print response end
+
+je textinfo is:Call is being processed!
+
+recv EXOSIP_CALL_PROCEEDING
+
+ :type = 5, new msg method:INVITE
+
+
+print request start
+type=5
+INVITE sip:34020000001310000001@192.168.1.109:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.110:5060;rport;branch=z9hG4bK47020889
+From: <sip:34020000002000000001@192.168.1.109:5060>;tag=723855376
+To: <sip:34020000001310000001@192.168.1.109:5060>
+Call-ID: 1658878235
+CSeq: 20 INVITE
+Contact: <sip:34020000002000000001@192.168.1.110:5060>
+Content-Type: Application/SDP
+Max-Forwards: 70
+User-Agent: eXosip/5.0.0
+Subject: 34020000001310000001:0,34020000002000000001:0
+Content-Length:   260
+
+v=0
+o=34020000001310000001 0 0 IN IP4 192.168.1.109
+s=Play
+c=IN IP4 192.168.1.109
+t=0 0
+m=video 8000 RTP/AVP 96 98 97
+a=setup:passive
+a=rtpmap:96 PS/90000
+a=rtpmap:97 MPEG4/90000
+a=rtpmap:98 H264/90000
+a=recvonly
+a=connection:new
+y=0100000001
+f=
+
+print request end
+
+
+print response start
+type=5
+SIP/2.0 101 Dialog Establishment
+Via: SIP/2.0/UDP 192.168.1.110:5060;rport=5060;branch=z9hG4bK47020889
+From: <sip:34020000002000000001@192.168.1.109:5060>;tag=723855376
+To: <sip:34020000001310000001@192.168.1.109:5060>;tag=7ececd455502fae64b4477d9d0c2465c
+Call-ID: 1658878235
+CSeq: 20 INVITE
+Contact: <sip:34020000001320000001@192.168.1.109:5060>
+User-agent: SIP UAS V3.0.0.1168249
+Content-Length: 0
+
+
+print response end
+
+je textinfo is:Remote phone has answered!
+
+recv EXOSIP_CALL_ANSWERED -1342075088 -1342060816 0 1 2
+
+EXOSIP_CALL_ANSWERED :type = 7, new msg method:INVITE
+
+
+print request start
+type=7
+INVITE sip:34020000001310000001@192.168.1.109:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.110:5060;rport;branch=z9hG4bK47020889
+From: <sip:34020000002000000001@192.168.1.109:5060>;tag=723855376
+To: <sip:34020000001310000001@192.168.1.109:5060>
+Call-ID: 1658878235
+CSeq: 20 INVITE
+Contact: <sip:34020000002000000001@192.168.1.110:5060>
+Content-Type: Application/SDP
+Max-Forwards: 70
+User-Agent: eXosip/5.0.0
+Subject: 34020000001310000001:0,34020000002000000001:0
+Content-Length:   260
+
+v=0
+o=34020000001310000001 0 0 IN IP4 192.168.1.109
+s=Play
+c=IN IP4 192.168.1.109
+t=0 0
+m=video 8000 RTP/AVP 96 98 97
+a=setup:passive
+a=rtpmap:96 PS/90000
+a=rtpmap:97 MPEG4/90000
+a=rtpmap:98 H264/90000
+a=recvonly
+a=connection:new
+y=0100000001
+f=
+
+print request end
+
+
+print response start
+type=7
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.1.110:5060;rport=5060;branch=z9hG4bK47020889
+From: <sip:34020000002000000001@192.168.1.109:5060>;tag=723855376
+To: <sip:34020000001310000001@192.168.1.109:5060>;tag=7ececd455502fae64b4477d9d0c2465c
+Call-ID: 1658878235
+CSeq: 20 INVITE
+Contact: <sip:34020000001320000001@192.168.1.109:5060>
+Content-Type: application/sdp
+User-agent: SIP UAS V3.0.0.1168249
+Content-Length:   244
+
+v=0
+o=34020000001310000001 0 0 IN IP4 192.168.1.109
+s=Play
+i=VCam Live Video
+c=IN IP4 192.168.1.109
+t=0 0
+m=video 9708 RTP/AVP 96
+a=sendonly
+a=rtpmap:96 PS/90000
+a=streamprofile:0
+a=streamnumber:0
+y=0100000001
+f=v/0/0/0/0/0a/0/0/0
+
+print response end
+
+EXOSIP_CALL_ANSWERED 1 
+
+msg body is:v=0
+o=34020000001310000001 0 0 IN IP4 192.168.1.109
+s=Play
+c=IN IP4 192.168.1.109
+t=0 0
+m=video 8000 RTP/AVP 96 98 97
+a=setup:passive
+a=rtpmap:96 PS/90000
+a=rtpmap:97 MPEG4/90000
+a=rtpmap:98 H264/90000
+a=recvonly
+a=connection:new
+y=0100000001
+f=
+
+
+EXOSIP_CALL_ANSWERED 2 
+
+EXOSIP_CALL_ANSWERED 3 
+
+onReceiveMessage 34020000002000000001 type 3 msgBody v=0
+o=34020000001310000001 0 0 IN IP4 192.168.1.109
+s=Play
+c=IN IP4 192.168.1.109
+t=0 0
+m=video 8000 RTP/AVP 96 98 97
+a=setup:passive
+a=rtpmap:96 PS/90000
+a=rtpmap:97 MPEG4/90000
+a=rtpmap:98 H264/90000
+a=recvonly
+a=connection:new
+y=0100000001
+f=
+
+EXOSIP_CALL_ANSWERED 4 
+
+EXOSIP_CALL_ANSWERED 5 
+
+
+ResponseCallAck!
+
+je textinfo is:New request received!
+
+recv EXOSIP_CALL_MESSAGE_NEW
+
+ :type = 14, new msg method:BYE
+
+
+print request start
+type=14
+BYE sip:34020000002000000001@192.168.1.110:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.109:5060;rport=5060;branch=z9hG4bK1cfaadb1b88ede9f2400cc437b8b01b1
+From: <sip:34020000001310000001@192.168.1.109:5060>;tag=7ececd455502fae64b4477d9d0c2465c
+To: <sip:34020000002000000001@192.168.1.109:5060>;tag=723855376
+Call-ID: 1658878235
+CSeq: 1 BYE
+Contact: <sip:34020000001320000001@192.168.1.109:5060>
+Max-forwards: 70
+User-agent: SIP UAS V3.0.0.1168249
+Content-Length: 0
+
+
+print request end
+
+
+print response start
+type=14
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.1.109:5060;rport=5060;branch=z9hG4bK1cfaadb1b88ede9f2400cc437b8b01b1
+From: <sip:34020000001310000001@192.168.1.109:5060>;tag=7ececd455502fae64b4477d9d0c2465c
+To: <sip:34020000002000000001@192.168.1.109:5060>;tag=723855376
+Call-ID: 1658878235
+CSeq: 1 BYE
+User-Agent: eXosip/5.0.0
+Content-Length: 0
+
+
+print response end
+
+je textinfo is:Bye Received!
+
+recv EXOSIP_CALL_CLOSED
+
+ :type = 21, new msg method:BYE
+
+
+print request start
+type=21
+BYE sip:34020000002000000001@192.168.1.110:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.109:5060;rport=5060;branch=z9hG4bK1cfaadb1b88ede9f2400cc437b8b01b1
+From: <sip:34020000001310000001@192.168.1.109:5060>;tag=7ececd455502fae64b4477d9d0c2465c
+To: <sip:34020000002000000001@192.168.1.109:5060>;tag=723855376
+Call-ID: 1658878235
+CSeq: 1 BYE
+Contact: <sip:34020000001320000001@192.168.1.109:5060>
+Max-forwards: 70
+User-agent: SIP UAS V3.0.0.1168249
+Content-Length: 0
+
+
+print request end
+
+
+print response start
+type=21
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.1.109:5060;rport=5060;branch=z9hG4bK1cfaadb1b88ede9f2400cc437b8b01b1
+From: <sip:34020000001310000001@192.168.1.109:5060>;tag=7ececd455502fae64b4477d9d0c2465c
+To: <sip:34020000002000000001@192.168.1.109:5060>;tag=723855376
+Call-ID: 1658878235
+CSeq: 1 BYE
+User-Agent: eXosip/5.0.0
+Content-Length: 0
+
+
+print response end
+
+je textinfo is:Call Context is released!
+
+EXOSIP_MESSAGE_NEW :type = 22
+
+recv EXOSIP_CALL_RELEASED 0 0 0 1 0
+
+
+print request start
+type=22
+
+print request end
+
+
+print response start
+type=22
+
+print response end

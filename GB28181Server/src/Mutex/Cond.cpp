@@ -23,7 +23,7 @@ Cond::~Cond()
 
 }
 
-//¼ÓËø
+//ï¿½ï¿½ï¿½ï¿½
 int Cond::Lock()
 {
 #if defined(WIN32) && !defined(MINGW)
@@ -35,7 +35,7 @@ int Cond::Lock()
 
 }
 
-//½âËø
+//ï¿½ï¿½ï¿½ï¿½
 int Cond::Unlock()
 {
 #if defined(WIN32) && !defined(MINGW)
@@ -58,7 +58,7 @@ int Cond::Wait()
 
 }
 
-//¹Ì¶¨Ê±¼äµÈ´ý
+//ï¿½Ì¶ï¿½Ê±ï¿½ï¿½È´ï¿½
 int Cond::TimedWait(int second)
 {
 #if defined(WIN32) && !defined(MINGW)
@@ -66,7 +66,7 @@ int Cond::TimedWait(int second)
     return 0;
 #else
     struct timespec abstime;
-    //»ñÈ¡´Óµ±Ç°Ê±¼ä£¬²¢¼ÓÉÏµÈ´ýÊ±¼ä£¬ ÉèÖÃ½ø³ÌµÄ³¬Ê±Ë¯ÃßÊ±¼ä
+    //ï¿½ï¿½È¡ï¿½Óµï¿½Ç°Ê±ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÈ´ï¿½Ê±ï¿½ä£¬ ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ÌµÄ³ï¿½Ê±Ë¯ï¿½ï¿½Ê±ï¿½ï¿½
     clock_gettime(CLOCK_REALTIME, &abstime);
     abstime.tv_sec += second;
     return pthread_cond_timedwait(&m_cond, &m_mutex, &abstime);
@@ -85,7 +85,7 @@ int Cond::Signal()
     return ret;
 }
 
-//»½ÐÑËùÓÐË¯ÃßÏß³Ì
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¯ï¿½ï¿½ï¿½ß³ï¿½
 int Cond::Broadcast()
 {
 #if defined(WIN32) && !defined(MINGW)

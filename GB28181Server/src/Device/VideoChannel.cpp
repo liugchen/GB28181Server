@@ -49,8 +49,8 @@ void VideoChannel::threadStart()
 {
     mH264buf = (char *)malloc(H264_FRAME_SIZE_MAX);
 
-    mIsLastKeyFrameLostPacket = false; //ÉÏÒ»¸öIÖ¡ÊÇ·ñ¶ª°üÁË£¬ÊÇµÄ»°£¬½ÓÏÂÀ´µÄÖ¡¶¼ÓĞ¿ÉÄÜ»¨ÆÁ ½ÓÏÂÀ´ËùÓĞµÄÖ¡£¬ ¶¼²»´«Èë¼ì²â
-    mIsKeyFrameGetted = false; //ÓÃÀ´¼ÇÂ¼IÖ¡ÊÇ·ñ»ñÈ¡µ½ÁË ·ñÔò¶ªÆúµÃµ½µÄh264Ö¡
+    mIsLastKeyFrameLostPacket = false; //ä¸Šä¸€ä¸ªIå¸§æ˜¯å¦ä¸¢åŒ…äº†ï¼Œæ˜¯çš„è¯ï¼Œæ¥ä¸‹æ¥çš„å¸§éƒ½æœ‰å¯èƒ½èŠ±å± æ¥ä¸‹æ¥æ‰€æœ‰çš„å¸§ï¼Œ éƒ½ä¸ä¼ å…¥æ£€æµ‹
+    mIsKeyFrameGetted = false; //ç”¨æ¥è®°å½•Iå¸§æ˜¯å¦è·å–åˆ°äº† å¦åˆ™ä¸¢å¼ƒå¾—åˆ°çš„h264å¸§
 
     openH264Decoder();
 }
@@ -78,7 +78,7 @@ void VideoChannel::dealwithDataNode(const RtpDataNode &node)
         {
             bool isKeyFrame = false;
 
-//                ///»¹Ã»»ñÈ¡µ½¹Ø¼üÖ¡ ÔòÏÈÅĞ¶ÏÊÇ·ñÊÇ¹Ø¼üÖ¡ ·ñÔò¶ªÆú
+//                ///è¿˜æ²¡è·å–åˆ°å…³é”®å¸§ åˆ™å…ˆåˆ¤æ–­æ˜¯å¦æ˜¯å…³é”®å¸§ å¦åˆ™ä¸¢å¼ƒ
 //                if (!isKeyFrameGetted)
             {
                 int pos = 0;
@@ -130,7 +130,7 @@ void VideoChannel::dealwithDataNode(const RtpDataNode &node)
                     fprintf(stderr, "lost packet! isKeyFrame=%d\n",isKeyFrame);
                 }
 
-                if (mIsLastKeyFrameLostPacket) //IÖ¡¶ªÁË£¬½ÓÏÂÀ´µÄÖ¡¶¼²»¼ì²â£¬Ö±µ½Óöµ½ÏÂÒ»¸öIÖ¡
+                if (mIsLastKeyFrameLostPacket) //Iå¸§ä¸¢äº†ï¼Œæ¥ä¸‹æ¥çš„å¸§éƒ½ä¸æ£€æµ‹ï¼Œç›´åˆ°é‡åˆ°ä¸‹ä¸€ä¸ªIå¸§
                 {
                     isLostPacket = true;
                 }
@@ -144,7 +144,7 @@ void VideoChannel::dealwithDataNode(const RtpDataNode &node)
 
 }
 
-///ÈûÈërtpÊı¾İµÈ´ı´¦Àí
+///å¡å…¥rtpæ•°æ®ç­‰å¾…å¤„ç†
 void VideoChannel::inputRtpBuffer(uint8_t *buffer, int size, uint32_t sequenceNumber, bool isLastPacket)
 {
     if ((sequenceNumber - mLastSequenceNumber ) != 1)
@@ -163,7 +163,7 @@ void VideoChannel::inputRtpBuffer(uint8_t *buffer, int size, uint32_t sequenceNu
 
     unsigned char *ptr = buffer;
 
-    ///ÕâÊÇÒ»¸öpsÍ· Ôò´¦ÀíÉÏÒ»°ü
+    ///è¿™æ˜¯ä¸€ä¸ªpså¤´ åˆ™å¤„ç†ä¸Šä¸€åŒ…
     if (ptr[0] == 0x00 && ptr[1] == 0x00 && ptr[2] == 0x01 && ptr[3] == 0xBA)
     {
         if (mRtpBufferSize > 0)
@@ -204,7 +204,7 @@ bool VideoChannel::openH264Decoder()
 
     pCodecCtx = avcodec_alloc_context3(NULL);
 
-    ///²éÕÒÓ²¼ş½âÂëÆ÷
+    ///æŸ¥æ‰¾ç¡¬ä»¶è§£ç å™¨
     pCodec = avcodec_find_decoder_by_name("h264_cuvid");
 
     if (pCodec == NULL)
@@ -213,7 +213,7 @@ bool VideoChannel::openH264Decoder()
     }
     else
     {
-        ///´ò¿ª½âÂëÆ÷
+        ///æ‰“å¼€è§£ç å™¨
         if (avcodec_open2(pCodecCtx, pCodec, NULL) < 0)
         {
             avcodec_close(pCodecCtx);
@@ -241,7 +241,7 @@ bool VideoChannel::openH264Decoder()
 
         pCodecCtx->thread_count = 8;
 
-        ///´ò¿ª½âÂëÆ÷
+        ///æ‰“å¼€è§£ç å™¨
         if (avcodec_open2(pCodecCtx, pCodec, NULL) < 0) {
             printf("Could not open codec.\n");
             avcodec_close(pCodecCtx);
@@ -296,7 +296,7 @@ void VideoChannel::decodeH264Buffer(uint8_t *buffer, int size, bool isLostPacket
 
     while (0 == avcodec_receive_frame(pCodecCtx, pFrame))
     {
-        ///ÅĞ¶Ï½âÂëÍê±ÏµÄÖ¡ÊÇ·ñÊÇ¹Ø¼üÖ¡
+        ///åˆ¤æ–­è§£ç å®Œæ¯•çš„å¸§æ˜¯å¦æ˜¯å…³é”®å¸§
         bool isKeyFrame = false;
 
         if(pFrame->key_frame)
@@ -308,7 +308,7 @@ void VideoChannel::decodeH264Buffer(uint8_t *buffer, int size, bool isLostPacket
         {
             pFrameRGB = av_frame_alloc();
 
-            ///½«½âÂëºóµÄYUVÊı¾İ×ª»»³ÉRGB32
+            ///å°†è§£ç åçš„YUVæ•°æ®è½¬æ¢æˆRGB32
             img_convert_ctx = sws_getContext(pCodecCtx->width, pCodecCtx->height,
                     pCodecCtx->pix_fmt, pCodecCtx->width, pCodecCtx->height,
                     AV_PIX_FMT_RGB32, SWS_BICUBIC, NULL, NULL, NULL);

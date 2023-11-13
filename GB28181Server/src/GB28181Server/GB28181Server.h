@@ -23,7 +23,8 @@ class GB28181Server
 {
 public:
     GB28181Server();
-
+    void dump_request(eXosip_event_t *evtp);
+    void dump_response(eXosip_event_t *evtp);
     /**
      * @brief setEventHandle 设置回调函数
      * @param handle

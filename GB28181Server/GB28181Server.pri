@@ -65,3 +65,9 @@ win32{
         LIBS += -L$$PWD/lib/win64/ffmpeg/lib -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lpostproc -lswresample -lswscale
     }
 }
+
+unix{
+INCLUDEPATH += /usr/lcoal/include
+unix:!macx: LIBS +=  -lmxml -ljrtp -losip2 -leXosip2 -losipparser2
+unix:!macx: LIBS +=  -lavcodec -lavdevice -lavfilter -lavformat -lpostproc -lavutil -lswresample -lswscale
+}

@@ -226,7 +226,7 @@
                   </size>
                  </property>
                  <property name="text">
-                  <string>34020000001320000001</string>
+                  <string>34020000002000000001</string>
                  </property>
                 </widget>
                </item>
@@ -292,7 +292,7 @@
                   </size>
                  </property>
                  <property name="text">
-                  <string>123456</string>
+                  <string>12345678</string>
                  </property>
                 </widget>
                </item>
@@ -327,7 +327,7 @@
                   </size>
                  </property>
                  <property name="text">
-                  <string>192.168.0.222</string>
+                  <string>192.168.1.110</string>
                  </property>
                 </widget>
                </item>
@@ -362,7 +362,7 @@
                   </size>
                  </property>
                  <property name="text">
-                  <string>34020000</string>
+                  <string>3402000000</string>
                  </property>
                 </widget>
                </item>
@@ -519,7 +519,7 @@
      <x>0</x>
      <y>0</y>
      <width>883</width>
-     <height>23</height>
+     <height>31</height>
     </rect>
    </property>
   </widget>

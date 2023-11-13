@@ -9,6 +9,7 @@
 #include <sys/time.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <cstring>
 
 void Sleep(long mSeconds)
 {

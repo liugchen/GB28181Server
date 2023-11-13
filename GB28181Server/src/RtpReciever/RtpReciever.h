@@ -26,10 +26,10 @@ protected:
 
 public:
     /**
-     * @brief GetH264FromPs   rtp½âÎöh264ÊÓÆµĞÅÏ¢
-     * @param buffer          ÊäÈërtpÊı¾İ£¨¹ú±êµÄps·â×°£©
-     * @param length          ³¤¶È
-     * @param h264Buffer      Êä³öµÄh264Êı¾İ
+     * @brief GetH264FromPs   rtpè§£æh264è§†é¢‘ä¿¡æ¯
+     * @param buffer          è¾“å…¥rtpæ•°æ®ï¼ˆå›½æ ‡çš„pså°è£…ï¼‰
+     * @param length          é•¿åº¦
+     * @param h264Buffer      è¾“å‡ºçš„h264æ•°æ®
      * @param h264length_out
      * @return
      */
